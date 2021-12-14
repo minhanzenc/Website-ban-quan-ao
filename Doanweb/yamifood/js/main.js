@@ -49,3 +49,29 @@ async function getProducts(){
         console.log(err)
     }
 }
+async function getDMSP(){
+    try{
+        const config = {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }
+        const res  = await fetch('http://127.0.0.1:8000/danhmuc/',config)
+        if(res.status === 200){
+            const data = await res.json()
+            const menu = document.getElementById('menuContainer')
+            data.forEach(danhmuc => {
+                menu.innerHTML += `
+                <a class="dropdown-item" href="menu.html?id=${danhmuc.id}">${danhmuc.ten_danh_muc}</a>
+                `
+            })
+            
+        }
+        else{
+            console.log("loi")
+        }
+    } catch(err){
+        console.log(err)
+    }
+}
