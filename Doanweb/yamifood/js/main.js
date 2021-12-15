@@ -75,3 +75,25 @@ async function getDMSP(){
         console.log(err)
     }
 }
+function logout(){
+    localStorage.clear()
+    alert("đăng xuất thành công")
+    location.reload()
+}
+function headerMenu(){
+    const token = localStorage.getItem('access_token')
+    console.log(token)
+    if(token== null || token== undefined) return
+
+
+    const headerUserContainer = document.getElementById('headerContainer')
+    headerUserContainer.innerHTML = ""
+    headerUserContainer.innerHTML = `
+        <a class="dropdown-item" href="#">Xem thông tin tai khoan</a>
+        <a onclick="logout()"href="#" class="dropdown-item" href="#">Đăng xuất</a>
+
+	`
+}
+getDMSP();
+getProducts();
+headerMenu();
